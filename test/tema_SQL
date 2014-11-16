@@ -1,0 +1,6 @@
+SELECT * FROM tema_books, tema_genre WHERE tema_books.genre = tema_genre.id;
+
+
+SELECT b.name, g.name_genre FROM tema_books b, tema_genre g WHERE b.genre = g.id;
+
+SELECT b.author, g.name_genre FROM tema_books b, tema_genre g WHERE b.genre = g.id;

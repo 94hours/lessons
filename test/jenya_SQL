@@ -1,0 +1,47 @@
+SELECT anim.name AS fio, pos.name AS position
+FROM jenya_animators anim, jenya_positions pos
+WHERE pos.id = anim.position;
+
+
+SELECT anim.name AS fio, pos.name AS position, sal.*
+FROM jenya_animators anim, jenya_positions pos, jenya_month sal
+WHERE pos.id = anim.position
+and anim.id = sal.id_anim;
+
+
+SELECT anim.name AS fio, pos.name AS position, anim.salary_anim, anim.salary_smena, sal.anim*anim.salary_anim, sal.smena*anim.salary_smena, sal.*
+FROM jenya_animators anim, jenya_positions pos, jenya_month sal
+WHERE pos.id = anim.position
+and anim.id = sal.id_anim;
+
+
+SELECT anim.name AS fio, pos.name AS position, anim.salary_anim, anim.salary_smena, sum(sal.anim*anim.salary_anim), sum(sal.smena*anim.salary_smena)
+FROM jenya_animators anim, jenya_positions pos, jenya_month sal
+WHERE pos.id = anim.position
+and anim.id = sal.id_anim
+group by fio, position, anim.salary_anim, anim.salary_smena;
+
+
+
+SELECT anim.name AS fio, pos.name AS position, anim.salary_anim, anim.salary_smena, sum(sal.anim*anim.salary_anim) + sum(sal.smena*anim.salary_smena) as "sum"
+FROM jenya_animators anim, jenya_positions pos, jenya_month sal
+WHERE pos.id = anim.position
+and anim.id = sal.id_anim
+group by fio, position, anim.salary_anim, anim.salary_smena;
+
+SELECT anim.name AS fio, pos.name AS position, sum(sal.anim*anim.salary_anim) + sum(sal.smena*anim.salary_smena) as "total", sum(sal.anim*anim.salary_anim) as "animation", sum(sal.smena*anim.salary_smena) as "smena"
+FROM jenya_animators anim, jenya_positions pos, jenya_month sal
+WHERE pos.id = anim.position
+and anim.id = sal.id_anim
+group by fio, position, anim.salary_anim, anim.salary_smena;
+
+SELECT anim.name AS fio, pos.name AS position, sum(sal.anim*anim.salary_anim) + sum(sal.smena*anim.salary_smena) as "total", sum(sal.anim*anim.salary_anim) as "animation", sum(sal.smena*anim.salary_smena) as "smena"
+FROM jenya_animators anim, jenya_positions pos, jenya_month sal
+WHERE pos.id = anim.position
+and anim.id = sal.id_anim
+and sal.date <= '2014-12-01'
+and sal.date >= '2014-11-01'
+group by fio, position, anim.salary_anim, anim.salary_smena;
+
+
+

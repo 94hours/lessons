@@ -1,0 +1,20 @@
+<queries>
+    <selects>
+        <select name="query1">
+            <![CDATA[
+            SELECT anim.name AS fio, pos.name AS position
+            FROM jenya_animators anim, jenya_positions pos
+            WHERE pos.id = anim.position;
+            ]]>
+        </select>
+
+        <select name="query2">
+            <![CDATA[
+            SELECT anim.name AS fio, pos.name AS position, sal.*
+            FROM jenya_animators anim, jenya_positions pos, jenya_month sal
+            WHERE pos.id = anim.position
+            and anim.id = sal.id_anim;
+            ]]>
+        </select>
+    </selects>
+</queries>

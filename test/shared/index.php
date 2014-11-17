@@ -8,6 +8,9 @@
 
 require_once "MyTestClass.php";
 
+$helper = new helper();
+var_dump($helper->getSQLByName());
+
 $ex = new testClass2();
 
 

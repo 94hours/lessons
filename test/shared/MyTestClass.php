@@ -5,6 +5,19 @@
  * Date: 24.08.14
  * Time: 19:10
  */
+class helper {
+
+    private static $XML_File = 'global_sqls';
+
+    public function getSQLByName() {
+        $file = self::$XML_File . '.xml';
+        $xml = simplexml_load_file($file);
+        return $xml->selects;
+    }
+
+
+}
+
 class MyTestClass {
     private function transformData($arg) {
         return ($arg + 100)/$arg*342;
